@@ -11,14 +11,14 @@ const Home: NextPage = () => {
   return (
     <>
       <div className='Walletbutton'>
-      <ConnectButton
-        accountStatus={{
-          smallScreen: 'avatar',
-          largeScreen: 'full',
-        }}
-      />
+        <ConnectButton
+          accountStatus={{
+            smallScreen: 'avatar',
+            largeScreen: 'full',
+          }}
+        />
       </div>
-      <BsTabs/>
+      <BsTabs />
     </>
   );
 };

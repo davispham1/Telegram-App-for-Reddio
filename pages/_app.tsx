@@ -10,8 +10,8 @@ import {
 import { getDefaultConfig, RainbowKitProvider } from '@rainbow-me/rainbowkit';
 
 const config = getDefaultConfig({
-  appName: 'RainbowKit App',
-  projectId: 'YOUR_PROJECT_ID',
+  appName: 'Miniapp Demo',
+  projectId: '2dd559df858106715a2ff8068d557a3e',
   chains: [sepolia],
   ssr: true,
 });
