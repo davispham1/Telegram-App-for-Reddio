@@ -1,10 +1,15 @@
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 import type { NextPage } from 'next';
 import BsTabs from './components/tabs';
+import { useEffect } from 'react';
 
 const Home: NextPage = () => {
+  useEffect(() => {
+    import('bootstrap/dist/js/bootstrap.bundle.min.js')
+      .catch(err => console.log("Error loading Bootstrap", err));
+  }, []);
   return (
-    <div>
+    <>
       <div className='Walletbutton'>
       <ConnectButton
         accountStatus={{
@@ -14,7 +19,7 @@ const Home: NextPage = () => {
       />
       </div>
       <BsTabs/>
-    </div >
+    </>
   );
 };
 
