@@ -4,14 +4,19 @@ import Deposit from "./Deposit";
 
 
 const BsTabs: React.FC = () => {
-    const [activeTab, setActiveTab] = useState<string>('deposit');
+  const [activeTab, setActiveTab] = useState<string>('deposit');
+  const [withdrawContent, setWithdrawContent] = useState<string>('');
 
   const handleTabChange = (tab: string) => {
     setActiveTab(tab);
   };
 
-    return (
-        <div className="d-flex justify-content-center align-items-center vh-100">
+  const handleWithdrawContentChange = (content: string) => {
+    setWithdrawContent(content);
+  };
+
+  return (
+    <div className="d-flex justify-content-center align-items-center vh-100">
       <div className="container-box">
         <ul className="nav nav-pills">
           <li className="nav-item">
@@ -36,9 +41,24 @@ const BsTabs: React.FC = () => {
               Withdraw
             </a>
             <ul className="dropdown-menu">
-              <li><a className="dropdown-item" href="#">Action</a></li>
-              <li><a className="dropdown-item" href="#">Another action</a></li>
-              <li><a className="dropdown-item" href="#">Something else here</a></li>
+              <li>
+                <a
+                  className="dropdown-item"
+                  href="#"
+                  onClick={() => handleWithdrawContentChange('Content for Action')}
+                >
+                  Action
+                </a>
+              </li>
+              <li>
+                <a
+                  className="dropdown-item"
+                  href="#"
+                  onClick={() => handleWithdrawContentChange('Content for Another action')}
+                >
+                  Another action
+                </a>
+              </li>
             </ul>
           </li>
         </ul>
@@ -47,7 +67,7 @@ const BsTabs: React.FC = () => {
             <Deposit />
           </div>
           <div className={`tab-pane fade ${activeTab === 'withdraw' ? 'show active' : ''}`} id="pills-Withdraw" role="tabpanel" aria-labelledby="pills-Withdraw-tab">
-            Content for Withdraw tab
+          {withdrawContent}
           </div>
         </div>
       </div>
