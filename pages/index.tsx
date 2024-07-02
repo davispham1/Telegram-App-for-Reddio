@@ -31,6 +31,7 @@ const Home: NextPage = () => {
           }}  
         />
       </header>
+      
       <BsTabs />
     </>
   );
