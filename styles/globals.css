@@ -79,3 +79,20 @@
 .Input:focus {
   box-shadow: 0 0 0 2px var(--violet-8);
 }
+
+.dropdown-menu {
+  min-width: 100%;
+  background-color: white;
+  border: 1px solid var(--violet-7); /* Example border color */
+}
+
+.dropdown-item {
+  font-size: 1rem; /* Adjust font size as needed */
+  padding: 0.5rem 1rem; /* Adjust padding as needed */
+  color: var(--violet-11); /* Text color */
+}
+
+.dropdown-item:hover, .dropdown-item:focus {
+  background-color: var(--violet-1); /* Hover/focus background color */
+  color: var(--violet-11); /* Hover/focus text color */
+}

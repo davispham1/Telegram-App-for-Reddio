@@ -1,0 +1,41 @@
+import {Reddio, SignTransferParams} from "@reddio.com/js";
+import {getAccount} from "@wagmi/core";
+
+let reddio: Reddio;
+let key: {
+    privateKey: string;
+    publicKey: string;
+};
+
+const usdcContractAddress =  '0x94a9D9AC8a22534E3FaCa9F4e7F2E2cf85d5E4C8'
+
+const initReddio = () => {
+    if (typeof window !== 'undefined' && !reddio) {
+        reddio = new Reddio({
+            env: 'test',
+        });
+    }
+};
+
+const generateKey = async () => {
+    key = {
+        "privateKey": "17b900ade984d0886d4dfea7d4d74a08cf4aeda8589b21d1b4b7dc36e2e1045",
+        "publicKey": "0x1e6c020796cfda4a88178817361647376df8a2415404e5a7cf6784bd3b0fbb4"
+    }
+}
+
+const depositUSDC = async (amount: number) => {
+    const tx = await reddio.erc20.approve({
+        tokenAddress: usdcContractAddress,
+        amount,
+    }); 
+    await tx.wait()
+    await generateKey()
+    return reddio.apis.depositERC20({
+        starkKey: key.publicKey,
+        quantizedAmount: amount,
+        tokenAddress: usdcContractAddress,
+    });
+}
+
+export { initReddio, generateKey, depositUSDC }

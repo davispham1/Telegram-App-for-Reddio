@@ -1,32 +1,38 @@
 import '../styles/globals.css';
 import '@rainbow-me/rainbowkit/styles.css';
-import type { AppProps } from 'next/app';
+import type { AppProps } from 'next/app'
+import {configureChains} from "@wagmi/core";
+import {getDefaultWallets, RainbowKitProvider} from "@rainbow-me/rainbowkit";
+import {createClient, WagmiConfig} from "wagmi";
+import { publicProvider } from 'wagmi/providers/public'
+import { sepolia } from 'wagmi/chains';
 
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { WagmiProvider } from 'wagmi';
-import {
-  sepolia,
-} from 'wagmi/chains';
-import { getDefaultConfig, RainbowKitProvider } from '@rainbow-me/rainbowkit';
+const { chains, provider } = configureChains(
+  [sepolia],
+  [
+    publicProvider()
+  ],
+);
 
-const config = getDefaultConfig({
-  appName: 'Miniapp Demo',
-  projectId: '2dd559df858106715a2ff8068d557a3e',
-  chains: [sepolia],
-  ssr: true,
+const { connectors } = getDefaultWallets({
+  appName: 'My RainbowKit App',
+  projectId: '6756806cba2601750f89e7fd325c28f1',
+  chains
 });
 
-const client = new QueryClient();
+const wagmiConfig = createClient({
+  autoConnect: true,
+  connectors,
+  provider,
+});
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <WagmiProvider config={config}>
-      <QueryClientProvider client={client}>
-        <RainbowKitProvider modalSize="compact" initialChain={sepolia}>
-          <Component {...pageProps} />
-        </RainbowKitProvider>
-      </QueryClientProvider>
-    </WagmiProvider>
+    <WagmiConfig client={wagmiConfig}>
+    <RainbowKitProvider chains={chains}>
+      <Component {...pageProps} />
+    </RainbowKitProvider>
+  </WagmiConfig>
   );
 }
 
