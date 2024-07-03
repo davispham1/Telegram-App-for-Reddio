@@ -1,5 +1,5 @@
 import useSWR from "swr";
-import {getBalance} from "./config";
+import {getBalance} from "../../config/config";
 import {ethers} from "ethers";
 
 export default function Balance() {

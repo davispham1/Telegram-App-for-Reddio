@@ -1,6 +1,7 @@
 import {Reddio, SignTransferParams} from "@reddio.com/js";
 import {getAccount} from "@wagmi/core";
 
+
 let reddio: Reddio;
 let key: {
     privateKey: string;

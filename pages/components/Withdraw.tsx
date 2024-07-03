@@ -1,5 +1,5 @@
 import React, {useCallback, useState} from "react";
-import {getBalance, withdrawUSDC} from '../config/config';
+import {getBalance, withdrawUSDC} from '../../config/config';
 import useSWR from "swr";
 import {ethers} from "ethers";
 

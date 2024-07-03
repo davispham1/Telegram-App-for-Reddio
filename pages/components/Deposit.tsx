@@ -1,5 +1,5 @@
 import React, {useCallback, useState} from "react";
-import { depositUSDC } from "../config/config";
+import { depositUSDC } from "../../config/config";
 
 export default function Deposit() {
     const [amount, setAmount] = useState('')
