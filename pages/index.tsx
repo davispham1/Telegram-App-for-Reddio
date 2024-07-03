@@ -6,11 +6,13 @@ import { initReddio } from './components/config';
 import Balance from './components/Balance';
 
 
+
 const Home: NextPage = () => {
   useEffect(() => {
     initReddio()
+    //@ts-ignore
     import('bootstrap/dist/js/bootstrap.bundle.min.js')
-      .catch(err => console.log("Error with Bootstrap", err));
+    .catch(err => console.log("Error with Bootstrap", err));
     const script = document.createElement('script');
     script.src = 'https://telegram.org/js/telegram-web-app.js';
     script.async = true;
