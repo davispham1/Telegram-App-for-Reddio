@@ -38,4 +38,41 @@ const depositUSDC = async (amount: number) => {
     });
 }
 
-export { initReddio, generateKey, depositUSDC }
+const withdrawUSDC = async (amount: number) => {    
+    const params: SignTransferParams = {
+        starkKey: key.publicKey,
+        privateKey: key.privateKey,
+        amount,
+        receiver: getAccount().address!,
+        type: 'ERC20',
+        contractAddress: usdcContractAddress,
+    };
+    return reddio.apis.withdrawalFromL2(params)
+}
+
+const getBalance = async () => {
+    const { data } = await reddio.apis.getBalancesV3({
+        starkKey: key.publicKey,
+        contractAddress: usdcContractAddress,
+    })
+    return data
+}
+
+const getWithdrawArea = async () => {
+    const { data } = await reddio.apis.withdrawalStatus({
+        ethaddress: getAccount().address!,
+        stage: 'withdrawarea',
+    });
+    return data
+}
+
+const withdrawToWallet = async (item: any) => {
+    return reddio.apis.withdrawalFromL1({
+        ethAddress: getAccount().address!,
+        type: item.type,
+        assetType: item.asset_type,
+    });
+}
+
+
+export { initReddio, generateKey, depositUSDC, withdrawUSDC, getBalance, getWithdrawArea, withdrawToWallet }

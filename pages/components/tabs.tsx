@@ -1,18 +1,21 @@
 import React, { useState } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Deposit from "./Deposit";
+import Withdraw from "./Withdraw";
+import WithdrawArea from "./WithdrawArea";
 
 
 const BsTabs: React.FC = () => {
   const [activeTab, setActiveTab] = useState<string>('deposit');
-  const [withdrawContent, setWithdrawContent] = useState<string>('');
+  const [withdrawContent, setWithdrawContent] = useState<JSX.Element>(<Withdraw />);
 
   const handleTabChange = (tab: string) => {
     setActiveTab(tab);
   };
 
-  const handleWithdrawContentChange = (content: string) => {
+  const handleWithdrawContentChange = (content: JSX.Element) => {
     setWithdrawContent(content);
+    setActiveTab('withdraw');
   };
 
   return (
@@ -45,18 +48,18 @@ const BsTabs: React.FC = () => {
                 <a
                   className="dropdown-item"
                   href="#"
-                  onClick={() => handleWithdrawContentChange('Content for Action')}
+                  onClick={() => handleWithdrawContentChange(<Withdraw />)}
                 >
-                  Action
+                  Withdraw
                 </a>
               </li>
               <li>
                 <a
                   className="dropdown-item"
                   href="#"
-                  onClick={() => handleWithdrawContentChange('Content for Another action')}
+                  onClick={() => handleWithdrawContentChange(<WithdrawArea />)}
                 >
-                  Another action
+                  Withdraw Area
                 </a>
               </li>
             </ul>
