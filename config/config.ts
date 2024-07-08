@@ -1,4 +1,4 @@
-import {Reddio, SignTransferParams} from "@reddio.com/js";
+import {Reddio, SignTransferParams, RecordsParams} from "@reddio.com/js";
 import {getAccount} from "@wagmi/core";
 
 
@@ -75,5 +75,24 @@ const withdrawToWallet = async (item: any) => {
     });
 }
 
+const records = async ()  => {
 
-export { initReddio, generateKey, depositUSDC, withdrawUSDC, getBalance, getWithdrawArea, withdrawToWallet }
+    const params: RecordsParams = {
+        starkKey: '0x1e6c020796cfda4a88178817361647376df8a2415404e5a7cf6784bd3b0fbb4',
+    };
+
+    try {
+        const response = await reddio.apis.getRecords(params);
+        const responseData = response.data.data;
+        const list = responseData.list;
+
+        console.log(typeof list);
+        return list;
+    } catch (error) {
+        console.error(error);
+        throw error;
+    }
+}
+
+
+export { initReddio, generateKey, depositUSDC, withdrawUSDC, getBalance, getWithdrawArea, withdrawToWallet, records }

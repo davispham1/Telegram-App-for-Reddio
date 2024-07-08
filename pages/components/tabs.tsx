@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Deposit from "./Deposit";
-import Withdraw from "./Withdraw";
-import WithdrawArea from "./WithdrawArea";
 
 
 const BsTabs: React.FC = () => {
@@ -21,25 +19,28 @@ const BsTabs: React.FC = () => {
   return (
     <div className="d-flex justify-content-center align-items-center vh-100">
       <div className="container-box">
+        <div className={"flex align-items-center text-lg-center "}>
+          <Balance/>
+        </div>
         <ul className="nav nav-pills">
           <li className="nav-item">
             <a
-              className={`nav-link ${activeTab === 'deposit' ? 'active' : ''}`}
-              onClick={() => handleTabChange('deposit')}
-              aria-current="page"
-              href="#"
+                className={`nav-link ${activeTab === 'deposit' ? 'active' : ''}`}
+                onClick={() => handleTabChange('deposit')}
+                aria-current="page"
+                href="#"
             >
               Deposit
             </a>
           </li>
           <li className="nav-item dropdown">
             <a
-              className={`nav-link dropdown-toggle ${activeTab === 'withdraw' ? 'active' : ''}`}
-              onClick={() => handleTabChange('withdraw')}
-              data-bs-toggle="dropdown"
-              href="#"
-              role="button"
-              aria-expanded="false"
+                className={`nav-link dropdown-toggle ${activeTab === 'withdraw' ? 'active' : ''}`}
+                onClick={() => handleTabChange('withdraw')}
+                data-bs-toggle="dropdown"
+                href="#"
+                role="button"
+                aria-expanded="false"
             >
               Withdraw
             </a>
@@ -48,7 +49,7 @@ const BsTabs: React.FC = () => {
                 <a
                   className="dropdown-item"
                   href="#"
-                  onClick={() => handleWithdrawContentChange(<Withdraw />)}
+                  onClick={() => handleWithdrawContentChange('Content for Action')}
                 >
                   Withdraw
                 </a>
@@ -57,7 +58,7 @@ const BsTabs: React.FC = () => {
                 <a
                   className="dropdown-item"
                   href="#"
-                  onClick={() => handleWithdrawContentChange(<WithdrawArea />)}
+                  onClick={() => handleWithdrawContentChange('Content for Another action')}
                 >
                   Withdraw Area
                 </a>
@@ -66,11 +67,13 @@ const BsTabs: React.FC = () => {
           </li>
         </ul>
         <div className="tab-content" id="pills-tabContent">
-          <div className={`tab-pane fade ${activeTab === 'deposit' ? 'show active' : ''}`} id="pills-Deposit" role="tabpanel" aria-labelledby="pills-Deposit-tab">
-            <Deposit />
+          <div className={`tab-pane fade ${activeTab === 'deposit' ? 'show active' : ''}`} id="pills-Deposit"
+               role="tabpanel" aria-labelledby="pills-Deposit-tab">
+            <Deposit/>
           </div>
-          <div className={`tab-pane fade ${activeTab === 'withdraw' ? 'show active' : ''}`} id="pills-Withdraw" role="tabpanel" aria-labelledby="pills-Withdraw-tab">
-          {withdrawContent}
+          <div className={`tab-pane fade ${activeTab === 'withdraw' ? 'show active' : ''}`} id="pills-Withdraw"
+               role="tabpanel" aria-labelledby="pills-Withdraw-tab">
+            {withdrawContent}
           </div>
         </div>
       </div>

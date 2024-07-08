@@ -28,7 +28,7 @@ const wagmiConfig = createClient({
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <WagmiConfig client={wagmiConfig}>
-    <RainbowKitProvider chains={chains}>
+    <RainbowKitProvider chains={chains} modalSize={"compact"}>
       <Component {...pageProps} />
     </RainbowKitProvider>
   </WagmiConfig>
