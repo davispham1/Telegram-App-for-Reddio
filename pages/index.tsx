@@ -2,11 +2,12 @@ import { ConnectButton } from '@rainbow-me/rainbowkit';
 import type { NextPage } from 'next';
 import BsTabs from './components/tabs';
 import { useEffect } from 'react';
-import { initReddio } from './components/config';
+import { initReddio } from '../config/config'
 
 const Home: NextPage = () => {
   useEffect(() => {
     initReddio()
+    // @ts-ignore
     import('bootstrap/dist/js/bootstrap.bundle.min.js')
       .catch(err => console.log("Error with Bootstrap", err));
     const script = document.createElement('script');
