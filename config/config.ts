@@ -75,6 +75,26 @@ const withdrawToWallet = async (item: any) => {
     });
 }
 
+const getTransferApproveArea = async (address: string) => {
+    const { data } = await reddio.apis.withdrawalStatus({
+        ethaddress: address!,
+        stage: 'withdrawarea',
+    });
+    return data
+}
+
+const transfer = async (amount: number, receiver: string): Promise<any> => {
+    const params: SignTransferParams = {
+        starkKey: key.publicKey,
+        privateKey: key.privateKey,
+        amount,
+        receiver: receiver!,
+        type: 'ERC20',
+        contractAddress: usdcContractAddress,
+    };
+    return reddio.apis.transfer(params)
+}
+
 const records = async ()  => {
 
     const params: RecordsParams = {
@@ -94,5 +114,9 @@ const records = async ()  => {
     }
 }
 
+const checkWithdrawals = async () => {
+    return
+}
 
-export { initReddio, generateKey, depositUSDC, withdrawUSDC, getBalance, getWithdrawArea, withdrawToWallet, records }
+
+export { initReddio, generateKey, depositUSDC, withdrawUSDC, getBalance, getWithdrawArea, withdrawToWallet, records, transfer, getTransferApproveArea }

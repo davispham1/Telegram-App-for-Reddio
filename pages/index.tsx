@@ -3,6 +3,8 @@ import type { NextPage } from 'next';
 import BsTabs from './components/tabs';
 import { useEffect } from 'react';
 import { initReddio } from '../config/config'
+import Balance from './components/Balance';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Home: NextPage = () => {
   useEffect(() => {
@@ -32,8 +34,14 @@ const Home: NextPage = () => {
           }}  
         />
       </header>
+      <div className="Main-container">
+      <span className='balance-text'>Wallet Balance</span>
+      <div className="balance">
+        <Balance />
+        </div>
       
       <BsTabs />
+      </div>
     </>
   );
 };

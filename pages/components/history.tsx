@@ -1,5 +1,5 @@
-import React, {useCallback, useEffect, useState} from "react";
-import {getBalance, records, withdrawUSDC} from "../../config/config";
+import React from "react";
+import { records } from "../../config/config";
 import useSWR from "swr";
 import { format } from "date-fns";
 import {ethers} from "ethers";
@@ -35,7 +35,7 @@ export default function History(): React.JSX.Element {
 
     const { data } = useSWR('history', records);
     const list = data ? data.map(x => x) : [];
-    console.log(list);
+
 
     //lines 72 - 85 should work
     let elementsList = [];
@@ -61,8 +61,8 @@ export default function History(): React.JSX.Element {
     console.log(importantInfoList)
 
 return <div>
-    <h1 className="text-xl font-bold leading-none text-black mb-3">Latest Transactions</h1>
-    <div style={{maxHeight: "320px", overflowY: "auto",}}>
+    <h1 className="text-lg font-bold leading-none text-black mb-3" style={{fontSize: "40px", marginTop: "10px"}}>Latest Transactions</h1>
+    <div style={{maxHeight: "320px", overflowY: "auto", scrollbarWidth: "none", msOverflowStyle: "none", }}>
         <ol className="divide-y divide-gray-200 dark:divide-gray-700">
         {importantInfoList}
     </ol>

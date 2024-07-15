@@ -1,6 +1,10 @@
 import React, { useState } from "react";
-import 'bootstrap/dist/css/bootstrap.min.css';
 import Deposit from "./Deposit";
+import Withdraw from "./Withdraw";
+import WithdrawArea from "./WithdrawArea";
+import Transfer from "./transfer";
+import History from "./history";
+
 
 
 const BsTabs: React.FC = () => {
@@ -19,9 +23,6 @@ const BsTabs: React.FC = () => {
   return (
     <div className="d-flex justify-content-center align-items-center vh-100">
       <div className="container-box">
-        <div className={"flex align-items-center text-lg-center "}>
-          <Balance/>
-        </div>
         <ul className="nav nav-pills">
           <li className="nav-item">
             <a
@@ -49,7 +50,7 @@ const BsTabs: React.FC = () => {
                 <a
                   className="dropdown-item"
                   href="#"
-                  onClick={() => handleWithdrawContentChange('Content for Action')}
+                  onClick={() => handleWithdrawContentChange(<Withdraw />)}
                 >
                   Withdraw
                 </a>
@@ -58,12 +59,30 @@ const BsTabs: React.FC = () => {
                 <a
                   className="dropdown-item"
                   href="#"
-                  onClick={() => handleWithdrawContentChange('Content for Another action')}
+                  onClick={() => handleWithdrawContentChange(<WithdrawArea />)}
                 >
                   Withdraw Area
                 </a>
               </li>
             </ul>
+          </li>
+          <li className="nav-item">
+            <a
+                className={`nav-link ${activeTab === 'transfer' ? 'active' : ''}`}
+                onClick={() => handleTabChange('transfer')}
+                href="#"
+            >
+              Transfer
+            </a>
+          </li>
+          <li className="nav-item">
+            <a
+                className={`nav-link ${activeTab === 'history' ? 'active' : ''}`}
+                onClick={() => handleTabChange('history')}
+                href="#"
+            >
+              History
+            </a>
           </li>
         </ul>
         <div className="tab-content" id="pills-tabContent">
@@ -74,6 +93,14 @@ const BsTabs: React.FC = () => {
           <div className={`tab-pane fade ${activeTab === 'withdraw' ? 'show active' : ''}`} id="pills-Withdraw"
                role="tabpanel" aria-labelledby="pills-Withdraw-tab">
             {withdrawContent}
+          </div>
+          <div className={`tab-pane fade ${activeTab === 'transfer' ? 'show active' : ''}`} id="pills-Transfer"
+               role="tabpanel" aria-labelledby="pills-Transfer-tab">
+            <Transfer />
+          </div>
+          <div className={`tab-pane fade ${activeTab === 'history' ? 'show active' : ''}`} id="pills-History"
+               role="tabpanel" aria-labelledby="pills-History-tab">
+            <History />
           </div>
         </div>
       </div>
